@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https:fonts.googleapis.com">
+<link rel="preconnect" href="https:fonts.gstatic.com" crossorigin>
+<link href="https:fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+     <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .container{
+            width:100vw;
+            height: 100vh;
+            background-color: rgb(18, 51, 31);
+            background-image: linear-gradient(to top,#44335a,rgb(218, 69, 69),#198484);
+            background: linear-gradient(
+          to right top,
+          #d16ba5,
+          #c777b9,
+          #ba83ca,
+          #aa8fd8,
+          #9a9ae1,
+          #8aa7ec,
+          #79b2f4,
+          #69bff8,
+          #52cffe,
+          #41dfff,
+          #46eefa,
+          #5ffbf1
+        );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content{
+           padding: 10px;
+           max-width: 699px;
+           min-height: 300px;
+           background-color: rgb(43, 90, 74);
+           background: linear-gradient(to top,#44335a,rgb(218, 69, 69),#198484);
+           border-radius: 20px;
+           box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: space-evenly;
+           
+        }
+          
+        .content :nth-child(2){
+            color: rgb(248, 250, 252);
+            font-weight: bolder;
+            font-size: x-large;
+            font-family: 'Alkatra', cursive;
+            max-width: 90vw;
+        }
+
+        
+    .content :nth-child(4){
+     
+    font-size: large;
+    font-family:    sans-serif;
+     
+    
+    /* box-shadow: 0px 10px 10px rgba(0,0,0,0.2); */
+    color: white;
+    background-clip: border-box;
+
+}
+   
+.content :nth-child(4):hover{
+       transform: scale(1.2);
+}
+
+
+.content :nth-child(3){
+    color: rgb(2, 14, 27);
+            font-weight: bolder;
+            font-size: x-large;
+            font-family: 'Alkatra', cursive;
+       
+}
+ h2{
+    margin: 5px;
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 10px;
+ }
+
+ #author{
+    text-decoration: underline;
+ }
+ 
+ img{
+    height: 50px;
+    background-size: cover;
+ }
+     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+           <h2>Motivational quotes</h2>
+          <div id="setup">Quotes Loading....</div>
+          <div id="author"></div>
+          <div id="nextBtn"><img src="https://cdn-icons-png.flaticon.com/512/2040/2040519.png" alt=""></div>
+        </div>
+    </div>
+
+     
+    <script>
+      
+      const setup=document.getElementById('setup');
+      const author=document.getElementById('author');
+      const nextBtn=document.getElementById('nextBtn');
+      const img=document.getElementById('img');
+      const nextQuotes= ()=>{
+
+// fetch("https://official-joke-api.appspot.com/random_joke")
+
+fetch("https://api.themotivate365.com/stoic-quote")
+  .then((res)=> res.json())
+  .then(data=>{
+    console.log(data);
+     setup.innerHTML=data.quote;
+     author.innerHTML=data.author;
+//     setup.innerHTML=data.setup;
+//    punch.innerHTML=data.punchline;
+  })
+  .catch(error => console.log('ERROR'))
+        
+      }
+      nextQuotes();
+      nextBtn.addEventListener('click',nextQuotes);
+      
+      
+    </script>
+
+    </body>
+</html>
